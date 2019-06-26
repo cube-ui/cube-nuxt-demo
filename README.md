@@ -3,8 +3,10 @@
 
 按照NUXT的文档，我们首先需要在 plugins 下新建 cube-ui.js，并在其中按需引入要使用的组件（全部引入见 [cube-ui](https://didi.github.io/cube-ui/#/zh-CN/docs/quick-start) 文档）
 
-这里我们引入 Botton 组件，并在 index.vue 中使用
+这里我们引入 Button 组件
 ```javascript
+// plugins/cube-ui.js
+
 import Vue from 'vue'
 import {
   /* eslint-disable no-unused-vars */
@@ -14,9 +16,10 @@ import {
 
 Vue.use(Button)
 ```
-此时默认会走 module 字段，也就是 cube-ui 的 src 目录。此时源码未经编译会报错。
-现在让我们加入后编译的配置
+
+现在让我们加入 后编译 和 按需引入 的配置
 ```javascript
+// nuxt.config.js
 build: {
   // standalone: true,
   transpile: ['cube-ui'],
@@ -33,13 +36,19 @@ build: {
 }
 ```
 nuxt 为我们提供了修改 webpack 配置的入口。为 vue-stylus-loader 添加 options，并添加我们后编译 和 按需引入的插件。theme.styl 就是自定义主题的文件。
-此时我们的项目，run dev 后依然会报错，调试后发现 server 阶段没有走编译。
+
+此时我们的项目，run dev 后会报错，调试后发现 server 阶段没有走编译。
+
+
 解决一：（推荐）
+
 nuxt 为我们提供了 transpile 使用Babel转换特定依赖项
+
 解决二：（不推荐）
+
 研究 @nuxt/webpack/dist/webpack.js 发现，node_modules 被加入了 externals 中，所以不走编译。从代码中发现，可通过变量 `standalone: true` 进行配置，但文档中并没有相关的说明，并且由于会编译整个 node_modules，所以会慢，不推荐。
 
-现在项目就可以正常跑起来了，并且我们再 theme.styl 中将按钮的背景色，从蓝色修改为橙色。
+现在项目就可以正常跑起来了，并且我们在 theme.styl 中将按钮的背景色，从蓝色修改为橙色。
 
 ## Build Setup
 
