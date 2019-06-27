@@ -14,10 +14,10 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.3.6",
-    "cube-ui": "^1.12.24",
-    "nuxt": "^2.0.0"
+    "cube-ui": "^1.12.24"
   },
   "devDependencies": {
+    "nuxt": "^2.0.0",
     "@nuxtjs/eslint-config": "^0.0.1",
     "@nuxtjs/eslint-module": "^0.0.1",
     "babel-eslint": "^10.0.1",
