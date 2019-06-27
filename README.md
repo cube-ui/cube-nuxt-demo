@@ -1,7 +1,11 @@
 # 在nuxt中使用cube-ui
 直接通过普通编译使用 [cube-ui](https://didi.github.io/cube-ui/#/zh-CN/docs/quick-start) 是没有问题的。但如果你想自定义主题，那必须通过后编译的方式。
 
-首先安装好 PostCompilePlugin 和 TransformModulesPlugin 两个包
+首先安装好后编译和按需引入的相关依赖：
+
+```bash
+npm i stylus stylus-loader webpack-post-compile-plugin webpack-transform-modules-plugin -D
+```
 
 然后按照NUXT的文档，我们需要在 plugins 下新建 cube-ui.js，并在其中按需引入要使用的组件（全部引入见 [cube-ui](https://didi.github.io/cube-ui/#/zh-CN/docs/quick-start) 文档）
 
