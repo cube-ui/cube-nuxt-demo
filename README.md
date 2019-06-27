@@ -39,13 +39,15 @@ nuxt 为我们提供了修改 webpack 配置的入口。为 stylus-loader 添加
 
 此时，server 阶段不编译node_modules，也就不编译cube-ui，有两种解决方式：
 
-解决一：（推荐）
+- 解决一：（推荐）
 
-nuxt 为我们提供了 transpile 使用Babel转换特定依赖项
+  nuxt 为我们提供了 transpile 使用Babel转换特定依赖项
 
-解决二：（不推荐）
+- 解决二：（不推荐）
 
-研究 @nuxt/webpack/dist/webpack.js 发现，node_modules 被加入了 externals 中，所以不走编译。从代码中发现，可通过变量 `standalone: true` 进行配置，但文档中并没有相关的说明，并且由于会编译整个 node_modules，所以会慢，不推荐。
+  研究 @nuxt/webpack/dist/webpack.js 发现，node_modules 被加入了 externals 中，所以不走编译。从代码中发现，可通过变量 `standalone: true` 进行配置，但文档中并没有相关的说明，并且由于会编译整个 node_modules，所以会慢，不推荐。
+
+所以最终推荐的配置如下：
 
 ```javascript
 // nuxt.config.js
